@@ -170,15 +170,20 @@ def rodar_algoritmo_gcol(G, nome_algoritmo, strategy=None, opt_alg=None):
         print(f"  - Número de cores (horários): {num_cores}")
         print(f"  - Tempo de execução: {execution_time:.4f} segundos")
         print(f"  - Mapeamento Disciplina -> Horário (Cor):")
-        
-        count = 0
+
         for disciplina, cor in c.items():
-            if count < 10:
-                print(f"    - {disciplina}: Cor {cor}")
-            count += 1
-        if count > 10:
-            print(f"     ... (e mais {count - 10} disciplinas)")
-            
+            print(f"    - {disciplina}: Cor {cor}")
+        
+        # Alternativa caso a lista fosse muito grande mas descartei por enquanto
+
+        #count = 0
+        #for disciplina, cor in c.items():
+        #    if count < 10:
+        #        print(f"    - {disciplina}: Cor {cor}")
+        #    count += 1
+        #if count > 10:
+        #    print(f"     ... (e mais {count - 10} disciplinas)")
+        
         print("---------------------------------------")
         return c 
 
