@@ -36,7 +36,10 @@ def selecionar_e_carregar_grafo():
     Exibe os arquivos CSV disponíveis na pasta, 
     permite escolher um e retorna o grafo NetworkX carregado.
     """
-    print("\n------ Seleção de Arquivo ------")
+    print(
+        "\n-------------------------------------------------------\n"\
+        "    Seleção de Arquivo                                 \n"\
+        "-------------------------------------------------------")
     
     arquivos = [f for f in os.listdir() if f.endswith('.csv')]
     if not arquivos:
@@ -75,7 +78,10 @@ def exibir_detalhes_grafo(G):
         print("Grafo está vazio.")
         return
 
-    print("\n-------- Detalhes do Grafo --------")
+    print(
+        "\n-------------------------------------------------------\n"\
+        "    Detalhes do Grafo                                  \n"\
+        "-------------------------------------------------------")
     num_vertices = G.number_of_nodes()
     num_arestas = G.number_of_edges()
     print(f"* Disciplinas (Vértices): {num_vertices}")
@@ -98,7 +104,6 @@ def exibir_detalhes_grafo(G):
     print(f"  - Mínimo: {grau_min}")
     print(f"  - Máximo: {grau_max}")
     print(f"  - Médio: {grau_med:.2f}")
-    print("-----------------------------------")
 
 def visualizar_grafo(G, c=None):
     """
@@ -156,7 +161,10 @@ def rodar_algoritmo_gcol(G, nome_algoritmo, strategy=None, opt_alg=None):
     Retorna:
         dict: O dicionário de coloração.
     """
-    print(f"\n------ Executando: {nome_algoritmo} ------")
+    print(
+        "\n-------------------------------------------------------\n"\
+        f"    Executando: {nome_algoritmo}\n"\
+        "-------------------------------------------------------")
     
     try:
         start_time = time.time()
@@ -184,7 +192,6 @@ def rodar_algoritmo_gcol(G, nome_algoritmo, strategy=None, opt_alg=None):
         #if count > 10:
         #    print(f"     ... (e mais {count - 10} disciplinas)")
         
-        print("---------------------------------------")
         return c 
 
     except Exception as e:
@@ -197,7 +204,10 @@ def menu_coloracao(G, c_anterior):
     Retorna o dicionário de coloração 'c' mais recente.
     """
     while True:
-        print("\n------ Escolha o Algoritmo de Coloração ------\n")
+        print(
+            "\n-------------------------------------------------------\n"\
+            "    Escolha o Algoritmo de Coloração                   \n"\
+            "-------------------------------------------------------")
         #print("--- Estratégias de Heurística ---")
         print("1. Random Sequential")
         print("2. Welsh-Powell")
@@ -258,7 +268,10 @@ def exibir_menu(G):
     coloracao_recente = None 
 
     while True:
-        print("\n------ Menu Principal ------\n")
+        print(
+        "\n-------------------------------------------------------\n"\
+        "    Menu Principal                                     \n"\
+        "-------------------------------------------------------")
         #print(f"Grafo atual: {len(G.nodes())} disciplinas, {len(G.edges())} conflitos\n")
         print("1. Visualizar grafo (mostra a última coloração, se houver)")
         print("2. Exibir detalhes e métricas do grafo")
@@ -284,7 +297,7 @@ def exibir_menu(G):
             if novo_G:
                 G = novo_G # Substitui o grafo atual pelo novo
                 coloracao_recente = None # Reseta a coloração
-                print("--- Grafo atualizado. Coloração anterior foi resetada. ---")
+                print("Grafo atualizado. Coloração anterior foi resetada.")
                  
         elif escolha == '0':
             print("Encerrando o programa.")
@@ -296,10 +309,12 @@ def exibir_menu(G):
 # Colocar o main em um arquivo separado depois
 if __name__ == "__main__":
     
-    print("------------------------------------------")
-    print("Trabalho de coloração em Grafos \n" \
-    "utilizando as bibliotecas NetworkX e GCol")
-    print("------------------------------------------")
+    print("-------------------------------------------------------\n" \
+    "    Grafos - Trabalho Prático 2\n"
+    "-------------------------------------------------------\n"
+    "    -   Clarisson Bento - 4005\n"
+    "    -   Mestre Shifrudo - 0001\n"
+    "    -   Giorno Giovanna - 5000")
     
     G_inicial = selecionar_e_carregar_grafo()
     
