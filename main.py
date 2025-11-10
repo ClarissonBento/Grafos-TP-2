@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 import gcol
 import time
 
+def limpar_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def carregar_grafo_do_csv(nome_arquivo):
     """
     Lê um arquivo CSV de conflitos (com cabeçalho) e monta um grafo
@@ -44,6 +48,7 @@ def selecionar_e_carregar_grafo():
     arquivos = [f for f in os.listdir() if f.endswith('.csv')]
     if not arquivos:
         print("Nenhum arquivo .csv encontrado no diretório.")
+        input("\nPressione ENTER para continuar...")
         return None
         
     for i, f in enumerate(arquivos):
@@ -74,6 +79,7 @@ def exibir_detalhes_grafo(G):
     """
     Exibe as métricas e detalhes do grafo.
     """
+    limpar_terminal()
     if G.number_of_nodes() == 0:
         print("Grafo está vazio.")
         return
@@ -104,12 +110,15 @@ def exibir_detalhes_grafo(G):
     print(f"  - Mínimo: {grau_min}")
     print(f"  - Máximo: {grau_max}")
     print(f"  - Médio: {grau_med:.2f}")
+    input("\nPressione ENTER para continuar...")
+    limpar_terminal()
 
 def visualizar_grafo(G, c=None):
     """
     Usa nx.draw para desenhar o grafo.
     Se um dicionário de coloração 'c' for fornecido, desenha o grafo colorido.
     """
+    limpar_terminal()
     if G.number_of_nodes() == 0:
         print("Grafo está vazio, nada para desenhar.")
         return
@@ -146,6 +155,9 @@ def visualizar_grafo(G, c=None):
         
     except Exception as e:
         print(f"Ocorreu um erro ao tentar desenhar o grafo: {e}")
+    input("\nPressione ENTER para continuar...")
+    limpar_terminal()
+
 
 def rodar_algoritmo_gcol(G, nome_algoritmo, strategy=None, opt_alg=None):
     """
@@ -161,6 +173,7 @@ def rodar_algoritmo_gcol(G, nome_algoritmo, strategy=None, opt_alg=None):
     Retorna:
         dict: O dicionário de coloração.
     """
+    limpar_terminal()
     print(
         "\n-------------------------------------------------------\n"\
         f"    Executando: {nome_algoritmo}\n"\
@@ -191,12 +204,13 @@ def rodar_algoritmo_gcol(G, nome_algoritmo, strategy=None, opt_alg=None):
         #    count += 1
         #if count > 10:
         #    print(f"     ... (e mais {count - 10} disciplinas)")
-        
-        return c 
+        return c
 
     except Exception as e:
         print(f"Falha ao executar o algoritmo {nome_algoritmo}: {e}")
         return None
+    input("\nPressione ENTER para continuar...")
+    limpar_terminal()
 
 def menu_coloracao(G, c_anterior):
     """
@@ -204,6 +218,7 @@ def menu_coloracao(G, c_anterior):
     Retorna o dicionário de coloração 'c' mais recente.
     """
     while True:
+        limpar_terminal()
         print(
             "\n-------------------------------------------------------\n"\
             "    Escolha o Algoritmo de Coloração                   \n"\
@@ -260,6 +275,8 @@ def menu_coloracao(G, c_anterior):
         
         else:
             print("Opção inválida. Tente novamente.")
+    input("\nPressione ENTER para continuar...")
+    limpar_terminal()
 
 def exibir_menu(G):
     """
@@ -290,14 +307,14 @@ def exibir_menu(G):
         elif escolha == '3':
             coloracao_recente = menu_coloracao(G, coloracao_recente)
             if coloracao_recente:
-                 print("\nColoração armazenada. Use '1. Visualizar' para ver o resultado gráfico.")
-        
+                print("\nColoração armazenada. Use '1. Visualizar' para ver o resultado gráfico.")
         elif escolha == '4':
             novo_G = selecionar_e_carregar_grafo()
             if novo_G:
                 G = novo_G # Substitui o grafo atual pelo novo
                 coloracao_recente = None # Reseta a coloração
                 print("Grafo atualizado. Coloração anterior foi resetada.")
+
                  
         elif escolha == '0':
             print("Encerrando o programa.")
@@ -305,6 +322,8 @@ def exibir_menu(G):
             
         else:
             print("Opção inválida. Tente novamente.")
+    input("\nPressione ENTER para continuar...")
+    limpar_terminal()
 
 # Colocar o main em um arquivo separado depois
 if __name__ == "__main__":
@@ -313,8 +332,8 @@ if __name__ == "__main__":
     "    Grafos - Trabalho Prático 2\n"
     "-------------------------------------------------------\n"
     "    -   Clarisson Bento - 4005\n"
-    "    -   Mestre Shifrudo - 0001\n"
-    "    -   Giorno Giovanna - 5000")
+    "    -   Gabriel Duarte - 4701\n"
+    "    -   Geovana Oliveira - 4633")
     
     G_inicial = selecionar_e_carregar_grafo()
     
